@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import "./App.css";
-import { set } from "react-hook-form";
 
 function App() {
   const [student, setStudents] = useState([
@@ -24,7 +23,7 @@ function App() {
   });
 
   function addData() {
-    setStudents((prev) => {
+    setStudents(() => {
       return [...student, { id: student.length, ...newStudent }];
     });
   }
@@ -39,7 +38,7 @@ function App() {
     });
   }
 
-  function handleEdit(id, field, value) {
+  function handleEdit(id : any, field : any, value : any) {
     setStudents(
       student.map((student) =>
         student.id === id ? { ...student, [field]: value } : student
@@ -70,7 +69,7 @@ function App() {
 
   function onDelete(id: any) {
     const filteredStudent = student.filter((obj) => obj.id != id);
-    setStudents((prev) => {
+    setStudents(() => {
       return filteredStudent;
     });
   }
@@ -81,12 +80,12 @@ function handleAddData(option :string) {
     setStudents(student.filter((obj) => obj.name === filters.filterName));
   } else if (option === "score") {
     setStudents(
-      student.filter((obj) => parseInt(obj.score) == parseInt(filters.filterScore))
+      student.filter((obj) => obj.score == parseInt(filters.filterScore))
     );
   }
 }
 
-function handleRemoveData(option: string) {
+function handleRemoveData() {
   setStudents(JSON.parse(JSON.stringify(duplicate)));
 }
   return (
@@ -100,7 +99,7 @@ function handleRemoveData(option: string) {
           onChange={(e) => handleFilterChange(e, "name")}
         />
         <button onClick={() => handleAddData("name")}>filter</button>
-        <button onClick={() => handleRemoveData("name")}>remove filter</button>
+        <button onClick={() => handleRemoveData()}>remove filter</button>
 
         <h3>filter on the bases score</h3>
         <input
@@ -109,14 +108,14 @@ function handleRemoveData(option: string) {
           onChange={(e) => handleFilterChange(e, "score")}
         />
         <button onClick={() => handleAddData("score")}>filter</button>
-        <button onClick={() => handleRemoveData("score")}>remove filter</button>
+        <button onClick={() => handleRemoveData()}>remove filter</button>
       </div>
       <table className="table" border={1}>
         <thead>Details of the students</thead>
         <tbody>
          
           <tr >
-            {student.map((obj, index) => {
+            {student.map((obj) => {
               return (
                 <tr key={obj.id} style={{ border: "2px black" }}>
                   <label htmlFor="name">name : </label>
@@ -172,15 +171,4 @@ function handleRemoveData(option: string) {
 
 export default App;
 
-// const filteredStudents = students.filter((student) => {
-//   const nameMatch = student.name
-//     .toLowerCase()
-//     .includes(filters.filterName.toLowerCase());
 
-//   const minScoreMatch =
-//     filters.minScore === "" || student.score >= parseInt(filters.minScore);
-//   const maxScoreMatch =
-//     filters.maxScore === "" || student.score <= parseInt(filters.maxScore);
-
-//   return nameMatch && minScoreMatch && maxScoreMatch;
-// });
