@@ -1,0 +1,55 @@
+<table className="table" border={1}>
+        <thead>Details of the students</thead>
+        <tbody>
+         
+          <tr >
+            {student.map((obj, index) => {
+              return (
+                <tr key={obj.id} style={{ border: "2px black" }}>
+                  <label htmlFor="name">name : </label>
+                  <input
+                    type="text"
+                    value={obj.name}
+                    onChange={(e) => handleEdit(obj.id, "name", e.target.value)}
+                  />
+                  <label htmlFor="job">job : </label>
+                  <input
+                    type="text"
+                    value={obj.job}
+                    onChange={(e) => handleEdit(obj.id, "job", e.target.value)}
+                  />
+                  <label htmlFor="age">age : </label>
+                  <input
+                    type="text"
+                    value={obj.age}
+                    onChange={(e) => handleEdit(obj.id, "age", e.target.value)}
+                  />
+
+                  <label htmlFor="score">score : </label>
+
+                  <input
+                    type="text"
+                    value={obj.score}
+                    onChange={(e) =>
+                      handleEdit(obj.id, "score", e.target.value)
+                    }
+                  />
+                  <button onClick={() => onDelete(obj.id)}>delete</button>
+                  {/* // <button>edit</button> */}
+                </tr>
+              );
+            })}
+          </tr>
+        </tbody>
+        <h2>For Adding the new Data</h2>
+        <label htmlFor="name">name : </label>
+        <input type="text" name="name" onChange={handleChange} />
+        <label htmlFor="job">job : </label>
+        <input type="text" name="job" onChange={handleChange} />
+        <label htmlFor="age">age : </label>
+        <input type="text" name="age" onChange={handleChange} />
+        <label htmlFor="score">score : </label>
+        <input type="text" name="score" onChange={handleChange} />
+        <button onClick={addData}>Add data</button>
+        <button onClick={print}>print new students</button>
+      </table>
