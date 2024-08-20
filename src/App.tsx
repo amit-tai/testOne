@@ -28,7 +28,7 @@ function App() {
     });
   }
 
-  function handleChange(e) {
+  function handleChange(e :any) {
     const { name, value } = e.target;
     setNewStudent((prev) => {
       return {
